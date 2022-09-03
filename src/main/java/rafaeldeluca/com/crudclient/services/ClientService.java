@@ -2,6 +2,7 @@ package rafaeldeluca.com.crudclient.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,9 +18,9 @@ public class ClientService {
 	private ClientRepository repository;	
 	
 	@Transactional(readOnly = true)
-	public Page<ClientDTO> findAllPaged(Pageable pageable) {
+	public Page<ClientDTO> findAllPaged(PageRequest pageRequest) {
 		
-		Page <Client> paginatedList = repository.findAll(pageable);
+		Page <Client> paginatedList = repository.findAll(pageRequest);
 		return paginatedList.map(c -> new ClientDTO(c));
 		
 	}

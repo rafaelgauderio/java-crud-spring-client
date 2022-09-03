@@ -1,23 +1,16 @@
 package rafaeldeluca.com.crudclient.resources;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import rafaeldeluca.com.crudclient.dto.ClientDTO;
-import rafaeldeluca.com.crudclient.entities.Client;
 import rafaeldeluca.com.crudclient.services.ClientService;
 
 @RestController
@@ -38,8 +31,7 @@ public class ClientResource {
 		listaDeClientes.add(new Client(3L,"Julia da Silva" ,"74246421030", 3.8000,Instant.parse("2003-12-03T23:15:00Z"),4));
 		Collections.sort(listaDeClientes);
 		return ResponseEntity.ok().body(listaDeClientes);	
-	}	
-	*/
+	}		
 	
 	@GetMapping
 	public ResponseEntity<Page<ClientDTO>> findAll (Pageable pageable) {
@@ -57,5 +49,18 @@ public class ClientResource {
 		
 	}
 	*/
+	
+	@GetMapping
+	public ResponseEntity<Page<ClientDTO>> findAll (
+			@RequestParam(value="page", defaultValue="0") Integer page,
+			@RequestParam(value="linesPerPage", defaultValue = "10") Integer linesPerPage,
+			@RequestParam(value="orderBy", defaultValue ="income" ) String orderBy,
+			@RequestParam(value="direction", defaultValue = "DESC") String direction
+			) {
+		
+		PageRequest pageRequest = PageRequest.of(page,linesPerPage,Direction.valueOf(direction),orderBy);
+		Page<ClientDTO> pagina = service.findAllPaged(pageRequest);
+		return ResponseEntity.ok().body(pagina);
+	}
 
 }
