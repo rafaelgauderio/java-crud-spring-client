@@ -16,6 +16,8 @@ public class ClientService {
 	@Autowired
 	private ClientRepository repository;
 	
+	
+	
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(Pageable pageable) {
 		

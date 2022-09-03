@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_client")
-public class Client implements Serializable {
+public class Client implements Serializable,Comparable<Client> {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -110,6 +110,11 @@ public class Client implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Client object) {
+		return this.getName().compareTo(object.getName());		
 	}	
 	
 	
