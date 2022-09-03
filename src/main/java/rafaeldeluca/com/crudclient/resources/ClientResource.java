@@ -28,7 +28,7 @@ public class ClientResource {
 	private ClientService service;
 	
 	//retornando um lista ordenada por nome com os dados mocados
-	
+	/*
 	@GetMapping
 	public ResponseEntity<List<Client>> findAll (Pageable pageable) {
 		
@@ -39,14 +39,14 @@ public class ClientResource {
 		Collections.sort(listaDeClientes);
 		return ResponseEntity.ok().body(listaDeClientes);	
 	}	
+	*/
 	
-	/*
 	@GetMapping
 	public ResponseEntity<Page<ClientDTO>> findAll (Pageable pageable) {
 		PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("name"));
 		Page<ClientDTO> page = service.findAllPaged(pageRequest);
 		return ResponseEntity.ok().body(page);
-	}	
+	}		
 	
 	/*
 	@GetMapping

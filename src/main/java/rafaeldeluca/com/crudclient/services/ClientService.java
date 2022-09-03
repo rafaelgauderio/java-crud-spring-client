@@ -14,9 +14,7 @@ import rafaeldeluca.com.crudclient.repositories.ClientRepository;
 public class ClientService {
 	
 	@Autowired
-	private ClientRepository repository;
-	
-	
+	private ClientRepository repository;	
 	
 	@Transactional(readOnly = true)
 	public Page<ClientDTO> findAllPaged(Pageable pageable) {
