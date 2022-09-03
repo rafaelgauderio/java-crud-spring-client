@@ -1,0 +1,11 @@
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Sara de Lima' ,'72128852072', 9200,TIMESTAMP '1991-08-23T11:30:00Z',2);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Cristiana Linda' ,'39166866073', 10500,TIMESTAMP '1995-01-26T22:30:00Z',3);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Rafael de Luca' ,'70118209060', 15300,TIMESTAMP '2005-08-05T10:30:00Z',1);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Lara da Silva' ,'96070091000', 2200,TIMESTAMP '1985-03-29T11:45:00Z',1);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Juliana de Luca' ,'59577192009', 7400,TIMESTAMP '1987-05-30T14:30:00Z',0);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Mara Maravilha' ,'42193079072', 8350,TIMESTAMP '1965-07-21T15:50:00Z',4);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Xuxa Meneguel' ,'17916219026', 2900,TIMESTAMP '1996-04-15T16:30:00Z',1);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Antonio Claudio de Almeida' ,'30726895040', 3920,TIMESTAMP '1975-09-21T17:30:00Z',3);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Zulmira da Silva' ,'64111648002', 6500,TIMESTAMP '2001-02-01T19:35:00Z',1);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Marcio Santos' ,'40758199066', 7400,TIMESTAMP '1986-11-23T21:30:00Z',1);
+INSERT INTO tb_client (name, cpf,income,birth_date,children) VALUES ('Lionel Messi' ,'05099827004', 9200,TIMESTAMP '1979-01-06T12:30:00Z',2);
