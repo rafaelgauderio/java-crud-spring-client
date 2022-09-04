@@ -1,5 +1,7 @@
 package rafaeldeluca.com.crudclient.resources;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -7,9 +9,12 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import rafaeldeluca.com.crudclient.dto.ClientDTO;
 import rafaeldeluca.com.crudclient.services.ClientService;
@@ -70,6 +75,19 @@ public class ClientResource {
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	// não retornar o código 200, retornas o código 201 de recurso criado
+	// no cabeçalho colocar o caminho do objeto criado Headers / Location: http://localhost:8080/clients/11 
+	
+	@PostMapping
+	public ResponseEntity<ClientDTO> insert(@RequestBody ClientDTO clientDTO) {
+		
+		clientDTO = service.insertInto(clientDTO);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(clientDTO.getId()).toUri();	
+		
+		return ResponseEntity.created(uri).body(clientDTO);
+		
+	}
 	
 
 }
