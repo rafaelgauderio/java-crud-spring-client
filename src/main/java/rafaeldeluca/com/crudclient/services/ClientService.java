@@ -2,6 +2,8 @@ package rafaeldeluca.com.crudclient.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,6 +55,27 @@ public class ClientService {
 		ClientDTO dto = new ClientDTO(entity);	
 		
 		return dto;
+		
+	}
+	
+	@Transactional
+	public ClientDTO updateClient (Long id, ClientDTO clientDTO) {
+		
+		try {
+			Client entity = repository.getOne(id);
+			entity.setName(clientDTO.getName());
+			entity.setCpf(clientDTO.getCpf());
+			entity.setIncome(clientDTO.getIncome());
+			entity.setBirthDate(clientDTO.getBirthDate());
+			entity.setChildren(clientDTO.getChildren());
+			entity = repository.save(entity);		
+			ClientDTO dto = new ClientDTO(entity);
+			return dto;
+			
+		} catch (EntityNotFoundException erro) {
+			throw new ExcecaoRecursoNaoEncontrado("Id de número: " + id + " não foi encontrado.\n"
+					+ "Dados do cliente não foram alterados.");
+		}
 		
 	}
 	

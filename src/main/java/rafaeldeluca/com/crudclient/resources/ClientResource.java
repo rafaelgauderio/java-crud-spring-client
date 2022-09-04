@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -69,7 +70,7 @@ public class ClientResource {
 		return ResponseEntity.ok().body(pagina);
 	}
 	
-	@GetMapping(value = "{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<ClientDTO> findByid(@PathVariable Long id) {
 		ClientDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
@@ -88,6 +89,15 @@ public class ClientResource {
 		return ResponseEntity.created(uri).body(clientDTO);
 		
 	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO) {
+		
+		clientDTO = service.updateClient(id, clientDTO);		
+		return ResponseEntity.ok().body(clientDTO);
+	}
+	
+	
 	
 
 }
