@@ -1,5 +1,7 @@
 package rafaeldeluca.com.crudclient.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +25,15 @@ public class ClientService {
 		Page <Client> paginatedList = repository.findAll(pageRequest);
 		return paginatedList.map(c -> new ClientDTO(c));
 		
+	}
+
+	@Transactional(readOnly = true)
+	public ClientDTO findById(Long id) {
+		//retorno da busca nunca vai ser um objeto nulo
+		Optional<Client> object = repository.findById(id);
+		Client entity = object.get();
+		ClientDTO dto = new ClientDTO(entity);
+		return  dto;
 	}
 	
 
