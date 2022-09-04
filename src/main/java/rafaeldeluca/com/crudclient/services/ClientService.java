@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rafaeldeluca.com.crudclient.dto.ClientDTO;
 import rafaeldeluca.com.crudclient.entities.Client;
 import rafaeldeluca.com.crudclient.repositories.ClientRepository;
+import rafaeldeluca.com.crudclient.services.exceptions.ExcecaoRecursoNaoEncontrado;
 
 @Service
 public class ClientService {
@@ -31,7 +32,9 @@ public class ClientService {
 	public ClientDTO findById(Long id) {
 		//retorno da busca nunca vai ser um objeto nulo
 		Optional<Client> object = repository.findById(id);
-		Client entity = object.get();
+		//Client entity = object.get();
+		Client entity = object.orElseThrow(() -> new ExcecaoRecursoNaoEncontrado("Entidade não encontrada com o id de número "
+				+ id ));
 		ClientDTO dto = new ClientDTO(entity);
 		return  dto;
 	}
