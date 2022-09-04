@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -88,6 +87,16 @@ public class ClientService {
 		} catch (EmptyResultDataAccessException erro) {
 			// codigo http 404 se id do cliente não for encontrado.
 			throw new ExcecaoRecursoNaoEncontrado("Id: " + id + " não encontrado. Cliente não excluido da base de dados.");
+		}
+	}
+
+	@Transactional
+	public void deleteAll() {
+
+		try {
+			repository.deleteAll(); // código http 204 se exclui com sucesso
+		} catch (Exception erro) {			
+			throw new ExcecaoRecursoNaoEncontrado(erro.getMessage());
 		}
 	}
 

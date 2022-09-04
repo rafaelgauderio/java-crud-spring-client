@@ -106,7 +106,11 @@ public class ClientResource {
 		
 	}
 	
-	
+	@DeleteMapping()
+	public ResponseEntity<Void> deteleAll () {
+		service.deleteAll();
+		return ResponseEntity.noContent().build(); 
+	}
 	
 
 }
